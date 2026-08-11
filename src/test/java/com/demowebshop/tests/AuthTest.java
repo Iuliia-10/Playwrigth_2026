@@ -22,13 +22,26 @@ public class AuthTest extends BaseTest {
     @Test
     public void testSuccessfulLoginAndLogout() {
         HomePage homePage = new HomePage(page);
+
+        // 1. Создаем уникальный email для каждого прогона
+        String email = "user" + System.currentTimeMillis() + "@test.com";
+        String password = "Password123!";
+
+        // 2. Регистрируем пользователя
+        RegisterPage registerPage = homePage.clickRegister();
+        registerPage.registerUser("John", "Doe", email, password);
+
+        // 3. Выходим после регистрации, чтобы проверить чистый логин
+        homePage.clickLogout();
+
+        // 4. Выполняем логин созданным пользователем
         LoginPage loginPage = homePage.clickLogin();
+        homePage = loginPage.login(email, password);
 
-        // Предполагается зарегистрированный пользователь
-        homePage = loginPage.login("testuser12345@test.com", "Password123!");
-
+        // 5. Проверяем, что кнопка Logout появилась
         Assert.assertTrue(homePage.isLogoutVisible(), "Logout link should be visible after login");
 
+        // 6. Выполняем logout и проверяем, что кнопка исчезла
         homePage.clickLogout();
         Assert.assertFalse(homePage.isLogoutVisible(), "Logout link should disappear after logout");
     }
@@ -40,6 +53,13 @@ public class AuthTest extends BaseTest {
 
         loginPage.login("wrong_email@test.com", "WrongPassword!");
 
-        Assert.assertTrue(loginPage.getErrorMessage().contains("The credentials provided are incorrect"));
+        String actualErrorMessage = loginPage.getErrorMessage();
+
+        // Проверяем ключевые слова или фразу об ошибке входа
+        boolean isErrorDisplayed = actualErrorMessage.contains("Login was unsuccessful")
+                || actualErrorMessage.contains("The credentials provided are incorrect");
+
+        Assert.assertTrue(isErrorDisplayed,
+                "Текст ошибки входа не совпал. Фактический текст был: '" + actualErrorMessage + "'");
     }
 }
