@@ -1,0 +1,1 @@
+rootProject.name = "Playwrigth_2026"
