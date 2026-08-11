@@ -33,9 +33,9 @@ public class HomePage extends BasePage {
         return logoutLink.isVisible();
     }
 
-    public String getLoggedInEmail() {
-        return accountEmail.textContent();
-    }
+//    public String getLoggedInEmail() {
+//        return accountEmail.textContent();
+//    }
 
     public void searchProduct(String productName) {
         searchInput.fill(productName);
