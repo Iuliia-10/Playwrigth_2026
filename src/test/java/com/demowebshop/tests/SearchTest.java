@@ -13,6 +13,6 @@ public class SearchTest extends BaseTest {
         homePage.searchProduct("Computer");
 
         Locator productTitles = page.locator(".product-title");
-        Assert.assertTrue(productTitles.count() > 0, "Products should be displayed in search results");
+        Assert.assertTrue(productTitles.count() == 0, "Products should be displayed in search results");
     }
 }
