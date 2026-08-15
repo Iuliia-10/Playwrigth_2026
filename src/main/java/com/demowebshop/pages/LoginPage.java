@@ -7,7 +7,8 @@ public class LoginPage extends BasePage {
     private final LazyWebElement emailInput = locateElement("#Email");
     private final LazyWebElement passwordInput = locateElement("#Password");
     private final LazyWebElement loginButton = locateElement(".login-button");
-    private final LazyWebElement errorMessage = locateElement(".validation-summary-errors");
+    private final LazyWebElement summaryErrorMessage = locateElement(".validation-summary-errors");
+    private final LazyWebElement emailFieldError = locateElement("span[data-valmsg-for='Email']");
 
     public LoginPage(Page page) {
         super(page);
@@ -20,7 +21,13 @@ public class LoginPage extends BasePage {
         return new HomePage(page);
     }
 
-    public String getErrorMessage() {
-        return errorMessage.textContent().trim();
+    // Возвращает текст сводной ошибки над формой
+    public String getSummaryErrorMessage() {
+        return summaryErrorMessage.isVisible() ? summaryErrorMessage.textContent().trim() : "";
+    }
+
+    // Возвращает текст ошибки формата прямо под полем Email
+    public String getEmailFieldError() {
+        return emailFieldError.isVisible() ? emailFieldError.textContent().trim() : "";
     }
 }

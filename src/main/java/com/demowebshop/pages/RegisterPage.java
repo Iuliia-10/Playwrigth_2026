@@ -27,6 +27,12 @@ public class RegisterPage extends BasePage {
         registerButton.click();
     }
 
+    public String registerRandomUser(String password) {
+        String uniqueEmail = "user" + System.currentTimeMillis() + "@test.com";
+        registerUser("John", "Doe", uniqueEmail, password);
+        return uniqueEmail;
+    }
+
     public String getSuccessMessage() {
         return resultMessage.textContent();
     }
