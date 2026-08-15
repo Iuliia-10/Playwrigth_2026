@@ -1,6 +1,7 @@
 package com.demowebshop.pages;
 
 import com.microsoft.playwright.Page;
+import com.demowebshop.pages.SearchPage;
 
 public class HomePage extends BasePage {
 
@@ -33,12 +34,9 @@ public class HomePage extends BasePage {
         return logoutLink.isVisible();
     }
 
-//    public String getLoggedInEmail() {
-//        return accountEmail.textContent();
-//    }
-
-    public void searchProduct(String productName) {
+    public SearchPage searchProduct(String productName) {
         searchInput.fill(productName);
         searchButton.click();
+        return new SearchPage(page);
     }
 }

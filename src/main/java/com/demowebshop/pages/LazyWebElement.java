@@ -36,4 +36,8 @@ public class LazyWebElement {
     public void check() {
         getLocator().check();
     }
+
+    public int count() {
+        return getLocator().count();
+    }
 }
