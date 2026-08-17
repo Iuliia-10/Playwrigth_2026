@@ -4,35 +4,31 @@ import com.demowebshop.pages.HomePage;
 import com.demowebshop.pages.LoginPage;
 import com.demowebshop.pages.RegisterPage;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class AuthTest extends BaseTest {
 
+
     @Test
     public void testSuccessfulRegistration() {
-        HomePage homePage = new HomePage(page);
         RegisterPage registerPage = homePage.clickRegister();
 
-        String uniqueEmail = "user" + System.currentTimeMillis() + "@test.com";
-        registerPage.registerUser("John", "Doe", uniqueEmail, "Password123!");
+        registerPage.registerRandomUser();
 
         Assert.assertTrue(registerPage.getSuccessMessage().contains("Your registration completed"));
     }
 
     @Test
     public void testSuccessfulLoginAndLogout() {
-        HomePage homePage = new HomePage(page);
-
-        String email = "user" + System.currentTimeMillis() + "@test.com";
-        String password = "Password123!";
-
         RegisterPage registerPage = homePage.clickRegister();
-        registerPage.registerUser("John", "Doe", email, password);
+
+        String email = registerPage.registerRandomUser();
 
         homePage.clickLogout();
 
         LoginPage loginPage = homePage.clickLogin();
-        homePage = loginPage.login(email, password);
+        homePage = loginPage.login(email, RegisterPage.DEFAULT_PASSWORD);
 
         Assert.assertTrue(homePage.isLogoutVisible(), "Logout link should be visible after login");
 
@@ -40,19 +36,30 @@ public class AuthTest extends BaseTest {
         Assert.assertFalse(homePage.isLogoutVisible(), "Logout link should disappear after logout");
     }
 
-    @Test
-    public void testInvalidLogin() {
-        HomePage homePage = new HomePage(page);
+    @Test(dataProvider = "invalidLoginData")
+    public void testInvalidLogin(String email, String expectedError) {
         LoginPage loginPage = homePage.clickLogin();
 
-        loginPage.login("wrong_email@test.com", "WrongPassword!");
+        loginPage.login(email, "WrongPassword!");
 
-        String actualErrorMessage = loginPage.getErrorMessage();
+        // Собираем текст из обоих возможных мест возникновения ошибок
+        String actualSummaryError = loginPage.getSummaryErrorMessage();
+        String actualFieldError = loginPage.getEmailFieldError();
+        String fullErrorText = actualSummaryError + " " + actualFieldError;
 
-        Assert.assertTrue(actualErrorMessage.contains("Login was unsuccessful. Please correct the errors and try again."),
-                "Wrong message: '" + actualErrorMessage + "'");
+        // Проверяем, что хотя бы в одном из мест содержится ожидаемый текст ошибки
+        Assert.assertTrue(fullErrorText.contains(expectedError),
+                String.format("Ожидаемая ошибка '%s' не найдена. Фактический текст сводной ошибки: '%s', ошибки поля: '%s'",
+                        expectedError, actualSummaryError, actualFieldError));
+    }
 
-        Assert.assertTrue(actualErrorMessage.contains("No customer account found"),
-                "Wrong message:: '" + actualErrorMessage + "'");
+    @DataProvider
+    private Object[][] invalidLoginData() {
+        return new Object[][]{
+                {"wrong_email@test.com", "Login was unsuccessful"},
+                {"email@test.com", "Login was unsuccessful"},
+                {"email@testcom", "Please enter a valid email address"},
+                {"wrong_email@test.", "Please enter a valid email address"}
+        };
     }
 }

@@ -4,6 +4,8 @@ import com.microsoft.playwright.Page;
 
 public class RegisterPage extends BasePage {
 
+    public static final String DEFAULT_PASSWORD = "Password123!";
+
     private final LazyWebElement genderRadio = locateElement("#gender-male");
     private final LazyWebElement firstNameInput = locateElement("#FirstName");
     private final LazyWebElement lastNameInput = locateElement("#LastName");
@@ -25,6 +27,12 @@ public class RegisterPage extends BasePage {
         passwordInput.fill(password);
         confirmPasswordInput.fill(password);
         registerButton.click();
+    }
+
+    public String registerRandomUser() {
+        String uniqueEmail = "user" + System.currentTimeMillis() + "@test.com";
+        registerUser("John", "Doe", uniqueEmail, DEFAULT_PASSWORD);
+        return uniqueEmail;
     }
 
     public String getSuccessMessage() {

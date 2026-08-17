@@ -1,6 +1,7 @@
 package com.demowebshop.tests;
 
 import com.demowebshop.config.ConfigReader;
+import com.demowebshop.pages.HomePage;
 import com.demowebshop.utils.TestListener;
 import com.microsoft.playwright.*;
 import org.testng.annotations.AfterMethod;
@@ -13,6 +14,7 @@ public class BaseTest {
     protected Browser browser;
     protected BrowserContext context;
     protected Page page;
+    protected HomePage homePage;
 
     @BeforeMethod
     public void setUp() {
@@ -24,6 +26,8 @@ public class BaseTest {
         page = context.newPage();
 
         page.navigate(ConfigReader.getBaseUrl());
+
+        homePage = new HomePage(page);
     }
 
     @AfterMethod
