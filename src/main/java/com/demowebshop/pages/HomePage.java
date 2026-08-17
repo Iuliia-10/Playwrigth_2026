@@ -2,6 +2,7 @@ package com.demowebshop.pages;
 
 import com.microsoft.playwright.Page;
 import com.demowebshop.pages.SearchPage;
+import io.qameta.allure.Step;
 
 public class HomePage extends BasePage {
 
@@ -34,6 +35,7 @@ public class HomePage extends BasePage {
         return logoutLink.isVisible();
     }
 
+    @Step("Search product")
     public SearchPage searchProduct(String productName) {
         searchInput.fill(productName);
         searchButton.click();
