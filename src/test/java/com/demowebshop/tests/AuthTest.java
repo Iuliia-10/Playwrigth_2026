@@ -1,58 +1,39 @@
 package com.demowebshop.tests;
 
-import com.demowebshop.pages.HomePage;
-import com.demowebshop.pages.LoginPage;
-import com.demowebshop.pages.RegisterPage;
+import com.demowebshop.ui.business.LoginPageBO;
+import com.demowebshop.ui.business.RegisterPageBO;
+import com.demowebshop.ui.page.RegisterPage;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class AuthTest extends BaseTest {
 
-
     @Test
     public void testSuccessfulRegistration() {
-        RegisterPage registerPage = homePage.clickRegister();
+        RegisterPageBO registerPageBO = homePageBO.openRegisterPage();
 
-        registerPage.registerRandomUser();
+        registerPageBO.registerRandomUser();
 
-        Assert.assertTrue(registerPage.getSuccessMessage().contains("Your registration completed"));
+        Assert.assertTrue(registerPageBO.getSuccessMessage().contains("Your registration completed"));
     }
 
     @Test
     public void testSuccessfulLoginAndLogout() {
-        RegisterPage registerPage = homePage.clickRegister();
+        RegisterPageBO registerPageBO = homePageBO.openRegisterPage();
 
-        String email = registerPage.registerRandomUser();
+        String email = registerPageBO.registerRandomUser();
 
-        homePage.clickLogout();
+        homePageBO.clickLogout();
 
-        LoginPage loginPage = homePage.clickLogin();
-        homePage = loginPage.login(email, RegisterPage.DEFAULT_PASSWORD);
+        LoginPageBO loginPageBO = homePageBO.openLoginPage();
+        homePageBO = loginPageBO.login(email, RegisterPage.DEFAULT_PASSWORD);
 
-        Assert.assertTrue(homePage.isLogoutVisible(), "Logout link should be visible after login");
+        Assert.assertTrue(homePageBO.verifyUserLoggedIn(), "Logout link should be visible after login");
 
-        homePage.clickLogout();
-        Assert.assertFalse(homePage.isLogoutVisible(), "Logout link should disappear after logout");
+        homePageBO.clickLogout();
+        Assert.assertFalse(homePageBO.verifyUserLoggedIn(), "Logout link should disappear after logout");
     }
-
-    @Test(dataProvider = "invalidLoginData")
-    public void testInvalidLogin(String email, String expectedError) {
-        LoginPage loginPage = homePage.clickLogin();
-
-        loginPage.login(email, "WrongPassword!");
-
-        // Собираем текст из обоих возможных мест возникновения ошибок
-        String actualSummaryError = loginPage.getSummaryErrorMessage();
-        String actualFieldError = loginPage.getEmailFieldError();
-        String fullErrorText = actualSummaryError + " " + actualFieldError;
-
-        // Проверяем, что хотя бы в одном из мест содержится ожидаемый текст ошибки
-        Assert.assertTrue(fullErrorText.contains(expectedError),
-                String.format("Ожидаемая ошибка '%s' не найдена. Фактический текст сводной ошибки: '%s', ошибки поля: '%s'",
-                        expectedError, actualSummaryError, actualFieldError));
-    }
-
     @DataProvider
     private Object[][] invalidLoginData() {
         return new Object[][]{
@@ -61,5 +42,18 @@ public class AuthTest extends BaseTest {
                 {"email@testcom", "Please enter a valid email address"},
                 {"wrong_email@test.", "Please enter a valid email address"}
         };
+    }
+
+    @Test(dataProvider = "invalidLoginData")
+    public void testInvalidLogin(String email, String expectedError) {
+        LoginPageBO loginPageBO = homePageBO.openLoginPage();
+
+        loginPageBO.login(email, "WrongPassword!");
+
+        String actualErrorText = loginPageBO.getErrorMessage();
+
+        Assert.assertTrue(actualErrorText.contains(expectedError),
+                String.format("Ожидаемая ошибка '%s' не найдена. Фактический текст ошибки: '%s'",
+                        expectedError, actualErrorText));
     }
 }

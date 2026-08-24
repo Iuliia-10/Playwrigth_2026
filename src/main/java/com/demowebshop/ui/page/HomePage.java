@@ -1,7 +1,6 @@
-package com.demowebshop.pages;
+package com.demowebshop.ui.page;
 
 import com.microsoft.playwright.Page;
-import com.demowebshop.pages.SearchPage;
 import io.qameta.allure.Step;
 
 public class HomePage extends BasePage {
@@ -17,28 +16,33 @@ public class HomePage extends BasePage {
         super(page);
     }
 
-    public RegisterPage clickRegister() {
+    @Step("Click register button")
+    public void clickRegisterButton() {
         registerLink.click();
-        return new RegisterPage(page);
     }
 
-    public LoginPage clickLogin() {
+    @Step("Click login button")
+    public void clickLoginButton() {
         loginLink.click();
-        return new LoginPage(page);
     }
 
-    public void clickLogout() {
+    @Step("Click logout button")
+    public void clickLogoutButton() {
         logoutLink.click();
     }
 
+    @Step("Check the visibility of logout button")
     public boolean isLogoutVisible() {
         return logoutLink.isVisible();
     }
 
-    @Step("Search product")
-    public SearchPage searchProduct(String productName) {
-        searchInput.fill(productName);
+    @Step("Enter search text")
+    public void enterSearchText(String text) {
+        searchInput.fill(text);
+    }
+
+    @Step("Click search button")
+    public void clickSearchButton() {
         searchButton.click();
-        return new SearchPage(page);
     }
 }

@@ -1,4 +1,4 @@
-package com.demowebshop.pages;
+package com.demowebshop.ui.page;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;

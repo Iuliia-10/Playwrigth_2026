@@ -1,6 +1,7 @@
-package com.demowebshop.pages;
+package com.demowebshop.ui.page;
 
 import com.microsoft.playwright.Page;
+import io.qameta.allure.Step;
 
 public class RegisterPage extends BasePage {
 
@@ -19,23 +20,43 @@ public class RegisterPage extends BasePage {
         super(page);
     }
 
-    public void registerUser(String firstName, String lastName, String email, String password) {
+    @Step("Select gender radiobutton")
+    public void selectGenderMale() {
         genderRadio.check();
+    }
+
+    @Step("Enter first name")
+    public void enterFirstName(String firstName) {
         firstNameInput.fill(firstName);
+    }
+
+    @Step("Enter last name")
+    public void enterLastName(String lastName) {
         lastNameInput.fill(lastName);
+    }
+
+    @Step("Enter email")
+    public void enterEmail(String email) {
         emailInput.fill(email);
+    }
+
+    @Step("Enter password")
+    public void enterPassword(String password) {
         passwordInput.fill(password);
-        confirmPasswordInput.fill(password);
+    }
+
+    @Step("Enter confirm password")
+    public void enterConfirmPassword(String confirmPassword) {
+        confirmPasswordInput.fill(confirmPassword);
+    }
+
+    @Step("Click register button")
+    public void clickRegisterButton() {
         registerButton.click();
     }
 
-    public String registerRandomUser() {
-        String uniqueEmail = "user" + System.currentTimeMillis() + "@test.com";
-        registerUser("John", "Doe", uniqueEmail, DEFAULT_PASSWORD);
-        return uniqueEmail;
-    }
-
-    public String getSuccessMessage() {
+    @Step("Get result text message")
+    public String getResultMessageText() {
         return resultMessage.textContent();
     }
 }

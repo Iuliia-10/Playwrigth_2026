@@ -1,6 +1,7 @@
-package com.demowebshop.pages;
+package com.demowebshop.ui.page;
 
 import com.microsoft.playwright.Page;
+import io.qameta.allure.Step;
 
 public class SearchPage extends BasePage {
 
@@ -10,6 +11,7 @@ public class SearchPage extends BasePage {
         super(page);
     }
 
+    @Step("Get product titles count")
     public int getProductTitleCount() {
         return productTitles.count();
     }

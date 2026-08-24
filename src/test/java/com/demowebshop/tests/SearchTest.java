@@ -1,8 +1,6 @@
 package com.demowebshop.tests;
 
-import com.demowebshop.pages.HomePage;
-import com.demowebshop.pages.SearchPage;
-import com.microsoft.playwright.Locator;
+import com.demowebshop.ui.business.SearchPageBO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
@@ -15,11 +13,10 @@ public class SearchTest extends BaseTest {
     @Test
     public void testSearchProduct() {
         LOGGER.info("Search product, logger");
-        HomePage homePage = new HomePage(page);
-       SearchPage searchPage = homePage.searchProduct("Computer");
 
+        SearchPageBO searchPageBO = homePageBO.searchProduct("Computer");
 
-        int productCount = searchPage.getProductTitleCount();
+        int productCount = searchPageBO.getFoundProductsCount();
         Assert.assertTrue(productCount > 0, "Products should be displayed in search results. Found: " + productCount);
     }
 }
