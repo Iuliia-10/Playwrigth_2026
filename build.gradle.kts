@@ -14,10 +14,16 @@ repositories {
 dependencies {
     testImplementation("org.testng:testng:7.12.0")
     implementation("com.microsoft.playwright:playwright:$playwrightVersion")
+
     implementation("org.apache.logging.log4j:log4j-core:2.26.1")
-    implementation("org.apache.logging.log4j:log4j-core:2.23.1")
-    implementation("org.apache.logging.log4j:log4j-slf4j2-impl:2.23.1")
+    implementation("org.apache.logging.log4j:log4j-api:2.26.1")
+    implementation("org.apache.logging.log4j:log4j-slf4j2-impl:2.26.1")
+
     implementation("io.qameta.allure:allure-testng:2.35.4")
+
+    testImplementation("io.rest-assured:rest-assured:5.4.0")
+    testImplementation("io.rest-assured:json-path:5.4.0")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.17.0")
 }
 
 tasks.test {

@@ -1,4 +1,4 @@
-package com.demowebshop.tests;
+package com.demowebshop.tests.ui;
 
 import com.demowebshop.config.ConfigReader;
 import com.demowebshop.ui.business.HomePageBO;

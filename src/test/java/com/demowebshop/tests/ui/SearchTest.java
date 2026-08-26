@@ -1,4 +1,4 @@
-package com.demowebshop.tests;
+package com.demowebshop.tests.ui;
 
 import com.demowebshop.ui.business.SearchPageBO;
 import org.apache.logging.log4j.LogManager;

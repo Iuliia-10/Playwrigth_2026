@@ -2,8 +2,8 @@
 <suite name="DemoWebShop Automated Test Suite">
     <test name="UI Tests">
         <classes>
-            <class name="com.demowebshop.tests.AuthTest" />
-            <class name="com.demowebshop.tests.SearchTest" />
+            <class name="com.demowebshop.tests.ui.AuthTest" />
+            <class name="com.demowebshop.tests.ui.SearchTest" />
         </classes>
     </test>
 </suite>

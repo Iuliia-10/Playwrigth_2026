@@ -1,6 +1,6 @@
 package com.demowebshop.utils;
 
-import com.demowebshop.tests.BaseTest;
+import com.demowebshop.tests.ui.BaseTest;
 import com.microsoft.playwright.Page;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
