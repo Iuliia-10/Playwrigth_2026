@@ -1,8 +1,9 @@
 package com.demowebshop.tests.api;
 
-import com.demowebshop.api.service.DeviceRequestDto;
-import com.demowebshop.api.service.UserRequestDto;
-import com.demowebshop.api.service.UserResponseDto;
+import com.demowebshop.api.business.AuthFacad;
+import com.demowebshop.api.model.DeviceRequestDto;
+import com.demowebshop.api.model.UserRequestDto;
+import com.demowebshop.api.model.UserResponseDto;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.testng.Assert;
@@ -29,18 +30,9 @@ public class apiTestLogin {
         userRequest.setEmail("iuliia1007+1057@sharkscode.com");
         userRequest.setDevice(device);
 
-        UserResponseDto user = RestAssured.given()
-                .baseUri("https://stage.beton.ua")
-                .body(userRequest)
-                .contentType(ContentType.JSON)
-                .headers("X-Fingerprint-Hash", "test")
-                .log().all()
-                .post("/auth/login")
-                .then()
-                .log().all()
-                .statusCode(200)
-                .extract()
-                .as(UserResponseDto.class);
+        AuthFacad authFacad = new AuthFacad();
+
+        UserResponseDto user = authFacad.loginUser(userRequest);
 
         Assert.assertNotNull(user.getUser());
         Assert.assertTrue(user.getStatus());

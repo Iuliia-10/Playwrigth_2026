@@ -1,4 +1,4 @@
-package com.demowebshop.api.service;
+package com.demowebshop.api.model;
 
 public class UserRequestDto {
 

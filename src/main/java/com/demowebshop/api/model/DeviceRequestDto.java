@@ -1,4 +1,4 @@
-package com.demowebshop.api.service;
+package com.demowebshop.api.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
