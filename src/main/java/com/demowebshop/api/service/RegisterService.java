@@ -1,21 +1,19 @@
 package com.demowebshop.api.service;
 
-import com.demowebshop.api.model.Login.request.LoginUserRequestDto;
+import com.demowebshop.api.model.Register.request.RegisterUserRequestDto;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
-public class AuthService {
+public class RegisterService {
 
-    public Response postLogin(LoginUserRequestDto userRequest){
+    public Response postRegister(RegisterUserRequestDto userRequest){
         return RestAssured.given()
                 .baseUri("https://stage.slotcity.ua")
                 .body(userRequest)
                 .contentType(ContentType.JSON)
                 .headers("X-Fingerprint-Hash", "test")
                 .log().all()
-                .post("/auth/login");
+                .post("auth/v2/register");
     }
-    }
-
-
+}

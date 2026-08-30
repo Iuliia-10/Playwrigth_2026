@@ -21,8 +21,8 @@ dependencies {
 
     implementation("io.qameta.allure:allure-testng:2.35.4")
 
-    testImplementation("io.rest-assured:rest-assured:5.4.0")
-    testImplementation("io.rest-assured:json-path:5.4.0")
+    implementation("io.rest-assured:rest-assured:5.4.0")
+    implementation("io.rest-assured:json-path:5.4.0")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.17.0")
 }
 

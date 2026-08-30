@@ -1,8 +1,8 @@
-package com.demowebshop.api.model;
+package com.demowebshop.api.model.Login.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class DeviceRequestDto {
+public class LoginDeviceRequestDto {
 
     private String platform;
 

@@ -1,12 +1,12 @@
-package com.demowebshop.api.model;
+package com.demowebshop.api.model.Login.responce;
 
-public class UserResponseDto {
+public class LoginUserResponseDto {
 
     private Boolean status;
     private Boolean showPromoPopup;
     private UserData user;
 
-    public UserResponseDto() {
+    public LoginUserResponseDto() {
     }
 
     public Boolean getStatus() {

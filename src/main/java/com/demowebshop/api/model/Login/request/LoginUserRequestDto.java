@@ -1,11 +1,11 @@
-package com.demowebshop.api.model;
+package com.demowebshop.api.model.Login.request;
 
-public class UserRequestDto {
+public class LoginUserRequestDto {
 
     private String email;
     private String password;
     private String type;
-    private DeviceRequestDto device = new DeviceRequestDto();
+    private LoginDeviceRequestDto device = new LoginDeviceRequestDto();
 
     public String getEmail() {
         return email;
@@ -31,11 +31,11 @@ public class UserRequestDto {
         this.type = type;
     }
 
-    public DeviceRequestDto getDevice() {
+    public LoginDeviceRequestDto getDevice() {
         return device;
     }
 
-    public void setDevice(DeviceRequestDto device) {
+    public void setDevice(LoginDeviceRequestDto device) {
         this.device = device;
     }
 }
