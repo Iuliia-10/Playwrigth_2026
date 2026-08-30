@@ -42,6 +42,9 @@ public class apiTestLoginPlayer {
         Assert.assertNotNull(user.getUser().getToken());
         Assert.assertNotNull(user.getUser().getId());
 
+        String userToken = user.getUser().getToken();
+        context.setAttribute("authToken", userToken);
+
         System.out.println("LOGGED IN EMAIL: " + email);
         System.out.println("TOKEN: " + user.getUser().getToken());
     }

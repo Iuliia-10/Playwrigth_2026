@@ -45,7 +45,7 @@ public class apiTestRegisterPlayer {
         Assert.assertNotNull(userResponse.getUser().getSessionId());
         Assert.assertNotNull(userResponse.getUser().getDeviceId());
 
-        System.out.println("TOOOKEN");
+        System.out.println("TOKEN");
         System.out.println(userResponse.getUser().getToken());
 
     }
