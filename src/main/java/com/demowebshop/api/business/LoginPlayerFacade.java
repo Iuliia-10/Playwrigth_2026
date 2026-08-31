@@ -1,6 +1,6 @@
 package com.demowebshop.api.business;
 
-import com.demowebshop.api.model.Request.LoginUserRequestDto;
+import com.demowebshop.api.model.Request.LoginUser.LoginUserRequestDto;
 import com.demowebshop.api.model.Response.LoginUserResponseDto;
 import com.demowebshop.api.service.AuthService;
 

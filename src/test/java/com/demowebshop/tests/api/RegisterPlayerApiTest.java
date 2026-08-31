@@ -1,12 +1,11 @@
 package com.demowebshop.tests.api;
 
 import com.demowebshop.api.business.RegisterPlayerFacade;
-import com.demowebshop.api.model.Request.RegisterDeviceRequestDto;
-import com.demowebshop.api.model.Request.RegisterUserRequestDto;
+import com.demowebshop.api.model.Request.RegisterUser.RegisterDeviceRequestDto;
+import com.demowebshop.api.model.Request.RegisterUser.RegisterUserRequestDto;
 import com.demowebshop.api.model.Response.RegisterUserResponceDto;
 import com.demowebshop.api.utils.SessionContext;
 import org.testng.Assert;
-import org.testng.ITestContext;
 import org.testng.annotations.Test;
 
 public class RegisterPlayerApiTest {

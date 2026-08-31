@@ -1,4 +1,4 @@
-package com.demowebshop.api.model.Request;
+package com.demowebshop.api.model.Request.LoginUser;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

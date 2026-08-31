@@ -1,8 +1,8 @@
 package com.demowebshop.tests.api;
 
 import com.demowebshop.api.business.LoginPlayerFacade;
-import com.demowebshop.api.model.Request.LoginDeviceRequestDto;
-import com.demowebshop.api.model.Request.LoginUserRequestDto;
+import com.demowebshop.api.model.Request.LoginUser.LoginDeviceRequestDto;
+import com.demowebshop.api.model.Request.LoginUser.LoginUserRequestDto;
 import com.demowebshop.api.model.Response.LoginUserResponseDto;
 import com.demowebshop.api.utils.SessionContext;
 import org.testng.Assert;

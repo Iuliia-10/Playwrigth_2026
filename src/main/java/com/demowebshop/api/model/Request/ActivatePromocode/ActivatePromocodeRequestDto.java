@@ -1,4 +1,4 @@
-package com.demowebshop.api.model.Request;
+package com.demowebshop.api.model.Request.ActivatePromocode;
 
 public class ActivatePromocodeRequestDto {
 

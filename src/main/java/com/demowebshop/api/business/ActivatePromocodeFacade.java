@@ -1,6 +1,6 @@
 package com.demowebshop.api.business;
 
-import com.demowebshop.api.model.Request.ActivatePromocodeRequestDto;
+import com.demowebshop.api.model.Request.ActivatePromocode.ActivatePromocodeRequestDto;
 import com.demowebshop.api.model.Response.ActivatePromocodeResponseDto;
 import com.demowebshop.api.service.PromocodeActivateService;
 import com.demowebshop.api.utils.SessionContext;

@@ -1,7 +1,7 @@
 package com.demowebshop.tests.api;
 
 import com.demowebshop.api.business.ActivatePromocodeFacade;
-import com.demowebshop.api.model.Request.ActivatePromocodeRequestDto;
+import com.demowebshop.api.model.Request.ActivatePromocode.ActivatePromocodeRequestDto;
 import com.demowebshop.api.model.Response.ActivatePromocodeResponseDto;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
