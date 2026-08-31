@@ -1,6 +1,5 @@
-package com.demowebshop.api.model.Register.responce;
+package com.demowebshop.api.model.Response;
 
-import com.demowebshop.api.model.Login.responce.LoginUserResponseDto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 

@@ -4,9 +4,9 @@
     <!-- Блок API тестов (Регистрация + Логин) -->
     <test name="API Registration and Login Flow">
         <classes>
-            <class name="com.demowebshop.tests.api.apiTestRegisterPlayer" />
-            <class name="com.demowebshop.tests.api.apiTestLoginPlayer" />
-            <class name="com.demowebshop.tests.api.apiTestActivatePromocode" />
+            <class name="com.demowebshop.tests.api.RegisterPlayerApiTest" />
+            <class name="com.demowebshop.tests.api.LoginPlayerApiTest" />
+            <class name="com.demowebshop.tests.api.ActivatePromocodeApiTest" />
         </classes>
     </test>
 

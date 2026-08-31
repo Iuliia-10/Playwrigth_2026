@@ -1,4 +1,4 @@
-package com.demowebshop.api.model.ActivatePromocode;
+package com.demowebshop.api.model.Response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

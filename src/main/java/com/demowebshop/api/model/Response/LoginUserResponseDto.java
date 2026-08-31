@@ -1,4 +1,4 @@
-package com.demowebshop.api.model.Login.responce;
+package com.demowebshop.api.model.Response;
 
 public class LoginUserResponseDto {
 

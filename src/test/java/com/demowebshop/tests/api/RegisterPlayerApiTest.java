@@ -1,17 +1,21 @@
 package com.demowebshop.tests.api;
 
-import com.demowebshop.api.business.RegisterPlayerFacad;
-import com.demowebshop.api.model.Register.request.RegisterDeviceRequestDto;
-import com.demowebshop.api.model.Register.request.RegisterUserRequestDto;
-import com.demowebshop.api.model.Register.responce.RegisterUserResponceDto;
+import com.demowebshop.api.business.RegisterPlayerFacade;
+import com.demowebshop.api.model.Request.RegisterDeviceRequestDto;
+import com.demowebshop.api.model.Request.RegisterUserRequestDto;
+import com.demowebshop.api.model.Response.RegisterUserResponceDto;
+import com.demowebshop.api.utils.SessionContext;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.Test;
 
-public class apiTestRegisterPlayer {
+public class RegisterPlayerApiTest {
+
+    public static String playerEmail;
+    public static String playerPassword;
 
     @Test
-    public void apiTestRegister(ITestContext context){
+    public void TestRegisterPlayer(){
 
         RegisterDeviceRequestDto device = new RegisterDeviceRequestDto();
         device.setPlatform("WEB");
@@ -29,12 +33,12 @@ public class apiTestRegisterPlayer {
         userRequest.setDevice(device);
         userRequest.setLanguage("uk");
 
-        context.setAttribute("userEmail", userRequest.getEmail());
-        context.setAttribute("userPassword", userRequest.getPassword());
+        playerEmail = userRequest.getEmail();
+        playerPassword = userRequest.getPassword();
 
-        RegisterPlayerFacad registerPlayerFacad = new RegisterPlayerFacad();
+        RegisterPlayerFacade registerPlayerFacade = new RegisterPlayerFacade();
 
-        RegisterUserResponceDto userResponse = registerPlayerFacad.registerUser(userRequest);
+        RegisterUserResponceDto userResponse = registerPlayerFacade.registerUser(userRequest);
 
         Assert.assertNotNull(userResponse.getUser());
         Assert.assertTrue(userResponse.getStatus());
@@ -44,6 +48,8 @@ public class apiTestRegisterPlayer {
         Assert.assertNotNull(userResponse.getUser().getId());
         Assert.assertNotNull(userResponse.getUser().getSessionId());
         Assert.assertNotNull(userResponse.getUser().getDeviceId());
+
+        SessionContext.setToken(userResponse.getUser().getToken());
 
         System.out.println("TOKEN");
         System.out.println(userResponse.getUser().getToken());

@@ -1,6 +1,6 @@
 package com.demowebshop.api.service;
 
-import com.demowebshop.api.model.ActivatePromocode.ActivatePromocodeRequestDto;
+import com.demowebshop.api.model.Request.ActivatePromocodeRequestDto;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;

@@ -1,25 +1,29 @@
 package com.demowebshop.tests.api;
 
-import com.demowebshop.api.business.ActivatePromocodeFacad;
-import com.demowebshop.api.model.ActivatePromocode.ActivatePromocodeRequestDto;
-import com.demowebshop.api.model.ActivatePromocode.ActivatePromocodeResponseDto;
+import com.demowebshop.api.business.ActivatePromocodeFacade;
+import com.demowebshop.api.model.Request.ActivatePromocodeRequestDto;
+import com.demowebshop.api.model.Response.ActivatePromocodeResponseDto;
 import org.testng.Assert;
-import org.testng.ITestContext;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class apiTestActivatePromocode {
+public class ActivatePromocodeApiTest {
+
+    @BeforeMethod
+    public void setUp() {
+
+        new RegisterPlayerApiTest().TestRegisterPlayer();
+    }
 
     @Test
-    public void apiTestActivatePromocode(ITestContext context) {
-
-        String token = (String) context.getAttribute("authToken");
+    public void apiTestActivatePromocode() {
 
         ActivatePromocodeRequestDto userRequest = new ActivatePromocodeRequestDto();
         userRequest.setCode("1DE6AE8D");
 
-        ActivatePromocodeFacad activatePromocodeFacad = new ActivatePromocodeFacad();
+        ActivatePromocodeFacade activatePromocodeFacad = new ActivatePromocodeFacade();
 
-        ActivatePromocodeResponseDto userResponse = activatePromocodeFacad.activatePromocode(userRequest, token);
+        ActivatePromocodeResponseDto userResponse = activatePromocodeFacad.activatePromocode(userRequest);
 
        Assert.assertTrue(userResponse.getStatus());
        Assert.assertTrue(userResponse.getIncludesDepositPromotions());
@@ -27,8 +31,5 @@ public class apiTestActivatePromocode {
         Assert.assertNotNull(userResponse.getPromotions().get(0).getId());
         Assert.assertNotNull(userResponse.getPromotions().get(0).getType());
         Assert.assertNotNull(userResponse.getPromotions().get(0).getActivationType());
-
-
-
     }
 }

@@ -1,20 +1,26 @@
 package com.demowebshop.tests.api;
 
-import com.demowebshop.api.business.LoginPlayerFacad;
-import com.demowebshop.api.model.Login.request.LoginDeviceRequestDto;
-import com.demowebshop.api.model.Login.request.LoginUserRequestDto;
-import com.demowebshop.api.model.Login.responce.LoginUserResponseDto;
+import com.demowebshop.api.business.LoginPlayerFacade;
+import com.demowebshop.api.model.Request.LoginDeviceRequestDto;
+import com.demowebshop.api.model.Request.LoginUserRequestDto;
+import com.demowebshop.api.model.Response.LoginUserResponseDto;
+import com.demowebshop.api.utils.SessionContext;
 import org.testng.Assert;
-import org.testng.ITestContext;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class apiTestLoginPlayer {
+public class LoginPlayerApiTest {
+
+    @BeforeMethod
+    public void setUp() {
+        new RegisterPlayerApiTest().TestRegisterPlayer();
+    }
 
     @Test
-    public void apiTestLogin(ITestContext context) {
+    public void apiTestLogin() {
 
-        String email = (String) context.getAttribute("userEmail");
-        String password = (String) context.getAttribute("userPassword");
+        String email = RegisterPlayerApiTest.playerEmail;
+        String password = RegisterPlayerApiTest.playerPassword;
 
         LoginDeviceRequestDto device = new LoginDeviceRequestDto();
         device.setPlatform("WEB");
@@ -32,7 +38,7 @@ public class apiTestLoginPlayer {
         userRequest.setEmail(email);
         userRequest.setDevice(device);
 
-        LoginPlayerFacad authFacad = new LoginPlayerFacad();
+        LoginPlayerFacade authFacad = new LoginPlayerFacade();
 
         LoginUserResponseDto user = authFacad.loginUser(userRequest);
 
@@ -43,7 +49,7 @@ public class apiTestLoginPlayer {
         Assert.assertNotNull(user.getUser().getId());
 
         String userToken = user.getUser().getToken();
-        context.setAttribute("authToken", userToken);
+        SessionContext.setToken(userToken);
 
         System.out.println("LOGGED IN EMAIL: " + email);
         System.out.println("TOKEN: " + user.getUser().getToken());

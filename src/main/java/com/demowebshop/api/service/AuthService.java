@@ -1,6 +1,6 @@
 package com.demowebshop.api.service;
 
-import com.demowebshop.api.model.Login.request.LoginUserRequestDto;
+import com.demowebshop.api.model.Request.LoginUserRequestDto;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;

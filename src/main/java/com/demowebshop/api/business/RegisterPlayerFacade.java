@@ -1,11 +1,10 @@
 package com.demowebshop.api.business;
 
-import com.demowebshop.api.model.Login.responce.LoginUserResponseDto;
-import com.demowebshop.api.model.Register.request.RegisterUserRequestDto;
-import com.demowebshop.api.model.Register.responce.RegisterUserResponceDto;
+import com.demowebshop.api.model.Request.RegisterUserRequestDto;
+import com.demowebshop.api.model.Response.RegisterUserResponceDto;
 import com.demowebshop.api.service.RegisterService;
 
-public class RegisterPlayerFacad {
+public class RegisterPlayerFacade {
 
     public RegisterUserResponceDto registerUser(RegisterUserRequestDto userRequest){
         return new RegisterService().postRegister(userRequest)

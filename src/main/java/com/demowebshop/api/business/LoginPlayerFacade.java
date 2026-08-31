@@ -1,11 +1,11 @@
 package com.demowebshop.api.business;
 
-import com.demowebshop.api.model.Login.request.LoginUserRequestDto;
-import com.demowebshop.api.model.Login.responce.LoginUserResponseDto;
+import com.demowebshop.api.model.Request.LoginUserRequestDto;
+import com.demowebshop.api.model.Response.LoginUserResponseDto;
 import com.demowebshop.api.service.AuthService;
 
 
-public class LoginPlayerFacad {
+public class LoginPlayerFacade {
 
     public LoginUserResponseDto loginUser(LoginUserRequestDto userRequest){
         return new AuthService().postLogin(userRequest)
