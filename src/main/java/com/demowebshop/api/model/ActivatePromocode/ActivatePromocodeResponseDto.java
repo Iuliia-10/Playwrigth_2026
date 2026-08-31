@@ -1,19 +1,24 @@
 package com.demowebshop.api.model.ActivatePromocode;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ActivatePromocodeResponseDto {
 
     private Boolean status;
     private Boolean includesDepositPromotions;
-    private PromotionsData promotionsData;
 
-    public PromotionsData getPromotionsdata() {
-        return promotionsdata;
+    @JsonProperty("promotions")
+    private List<PromotionsData> promotions;
+
+    public List<PromotionsData> getPromotions() {
+        return promotions;
     }
 
-    public void setPromotionsdata(PromotionsData promotionsdata) {
-        this.promotionsdata = promotionsdata;
+    public void setPromotions(List<PromotionsData> promotions) {
+        this.promotions = promotions;
     }
 
     public Boolean getStatus() {
@@ -32,10 +37,12 @@ public class ActivatePromocodeResponseDto {
         this.includesDepositPromotions = includesDepositPromotions;
     }
 
-    public static class PromotionsData{
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static class PromotionsData {
 
         private Integer id;
         private String type;
+
         @JsonProperty("activation_type")
         private String activationType;
 
@@ -62,13 +69,5 @@ public class ActivatePromocodeResponseDto {
         public void setType(String type) {
             this.type = type;
         }
-
-
-
-
     }
-
-
-
-
 }
