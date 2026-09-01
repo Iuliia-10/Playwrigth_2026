@@ -5,7 +5,7 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
-public class AuthService {
+public class LoginService {
 
     public Response postLogin(LoginUserRequestDto userRequest){
         return RestAssured.given()
