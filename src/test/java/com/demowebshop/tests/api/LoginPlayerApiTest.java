@@ -1,9 +1,9 @@
 package com.demowebshop.tests.api;
 
 import com.demowebshop.api.business.LoginPlayerFacade;
-import com.demowebshop.api.model.Request.LoginUser.LoginDeviceRequestDto;
-import com.demowebshop.api.model.Request.LoginUser.LoginUserRequestDto;
-import com.demowebshop.api.model.Response.LoginUserResponseDto;
+import com.demowebshop.api.model.request.loginuser.LoginDeviceRequestDto;
+import com.demowebshop.api.model.request.loginuser.LoginUserRequestDto;
+import com.demowebshop.api.model.response.LoginUserResponseDto;
 import com.demowebshop.api.utils.SessionContext;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -13,7 +13,7 @@ public class LoginPlayerApiTest {
 
     @BeforeMethod
     public void setUp() {
-        new RegisterPlayerApiTest().TestRegisterPlayer();
+        new RegisterPlayerApiTest().testRegisterPlayer();
     }
 
     @Test

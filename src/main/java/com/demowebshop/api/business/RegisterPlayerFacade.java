@@ -1,7 +1,7 @@
 package com.demowebshop.api.business;
 
-import com.demowebshop.api.model.Request.RegisterUser.RegisterUserRequestDto;
-import com.demowebshop.api.model.Response.RegisterUserResponceDto;
+import com.demowebshop.api.model.request.RegisterUser.RegisterUserRequestDto;
+import com.demowebshop.api.model.response.RegisterUserResponceDto;
 import com.demowebshop.api.service.RegisterService;
 
 public class RegisterPlayerFacade {

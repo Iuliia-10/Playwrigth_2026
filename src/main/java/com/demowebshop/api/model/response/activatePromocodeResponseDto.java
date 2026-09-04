@@ -1,11 +1,11 @@
-package com.demowebshop.api.model.Response;
+package com.demowebshop.api.model.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ActivatePromocodeResponseDto {
+public class activatePromocodeResponseDto {
 
     private Boolean status;
     private Boolean includesDepositPromotions;

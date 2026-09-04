@@ -1,4 +1,4 @@
-package com.demowebshop.api.model.Request.LoginUser;
+package com.demowebshop.api.model.request.loginuser;
 
 public class LoginUserRequestDto {
 

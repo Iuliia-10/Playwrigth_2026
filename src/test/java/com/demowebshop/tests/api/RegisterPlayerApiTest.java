@@ -1,9 +1,9 @@
 package com.demowebshop.tests.api;
 
 import com.demowebshop.api.business.RegisterPlayerFacade;
-import com.demowebshop.api.model.Request.RegisterUser.RegisterDeviceRequestDto;
-import com.demowebshop.api.model.Request.RegisterUser.RegisterUserRequestDto;
-import com.demowebshop.api.model.Response.RegisterUserResponceDto;
+import com.demowebshop.api.model.request.RegisterUser.RegisterDeviceRequestDto;
+import com.demowebshop.api.model.request.RegisterUser.RegisterUserRequestDto;
+import com.demowebshop.api.model.response.RegisterUserResponceDto;
 import com.demowebshop.api.utils.SessionContext;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -14,7 +14,7 @@ public class RegisterPlayerApiTest {
     public static String playerPassword;
 
     @Test
-    public void TestRegisterPlayer(){
+    public void testRegisterPlayer(){
 
         RegisterDeviceRequestDto device = new RegisterDeviceRequestDto();
         device.setPlatform("WEB");
